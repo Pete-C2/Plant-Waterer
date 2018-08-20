@@ -36,7 +36,7 @@ class PumpThread ( threading.Thread ):
                     now = datetime.datetime.now().time()
                     
                     for count in pump_schedule:
-                         if ((now >= pump_schedule[count]['time-on']) AND (now < pump_schedule[count]['time-off'])):
+                         if ((now >= pump_schedule[count]['time-on']) and (now < pump_schedule[count]['time-off'])):
                               for pump_pin in pump_pins:
                                    GPIO.output(pump_pin, GPIO.HIGH)
                                    pump_state = "On"
@@ -45,9 +45,9 @@ class PumpThread ( threading.Thread ):
                               for pump_pin in pump_pins:
                                    GPIO.output(pump_pin, GPIO.LOW)
                                    pump_state = "Off"
-                                   Print "Pumps off"
+                                   print "Pumps off"
                    
-                     time.sleep(control_interval)
+                    time.sleep(control_interval)
 
           except KeyboardInterrupt:
                GPIO.cleanup()
@@ -70,7 +70,7 @@ display = root.find('DISPLAY')
 water = root.find('WATER')
 
 # Read hardware configuration
-relay_pins = []
+pump_pins = []
 for child in pumps:
      pump_pins.append(int(child.find('RELAY').text))
 
@@ -85,13 +85,18 @@ for child in pumps:
 # Read time schedules
 pump_schedule = {}
 count = 1
-for child in schedule:
+for child in water:
      temp_on = datetime.datetime.strptime(child.find('TIME_ON').text, "%H:%M")
      temp_off = datetime.datetime.strptime(child.find('TIME_OFF').text, "%H:%M")
      schedule_time_on = temp_on.time()
      schedule_time_off = temp_off.time()
      pump_schedule[count] = {'time-on' : schedule_time_on, 'time-off' : schedule_time_off}
+     print "Pump: " + str(count) + ". On at " + str(schedule_time_on) + " & off at " + str(schedule_time_off)
      count = count + 1
+
+
+# Control
+control_interval = 10 # seconds. Interval between control measurements
 
 PumpThread().start()
 

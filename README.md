@@ -27,6 +27,8 @@ See wiki.
 
 ## Changelog
 
+### V0.2
+Working code controlling an LED.
 
 ### V0.1
 Initial trial code.

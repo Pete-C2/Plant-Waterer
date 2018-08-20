@@ -4,13 +4,14 @@
 <PUMP>
   <CHANNEL>
      <RELAY>40</RELAY>
+     <NAME>Pump</NAME>
   </CHANNEL>
 </PUMP>
 
 <WATER>
   <SCHEDULE>
-    <TIME_ON>21:00</TIME_ON>
-    <TIME_OFF>21:05</TIME_OFF>
+    <TIME_ON>17:37</TIME_ON>
+    <TIME_OFF>17:38</TIME_OFF>
   </SCHEDULE>
 </WATER>
 
