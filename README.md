@@ -7,6 +7,7 @@ Requires:
   - sudo apt-get install python3-flask
 - A [Raspberry Pi](http://www.raspberrypi.org/).
 - Hardware to control a water pump.
+- water pump!
 
 Installation:
 - Copy files to a folder on the Raspberry Pi.
@@ -26,6 +27,9 @@ Recommendations (to make life easier):
 See wiki.
 
 ## Changelog
+
+### V1.0
+Fully working on a daily schedule to water plants
 
 ### V0.2
 Working code controlling an LED.
